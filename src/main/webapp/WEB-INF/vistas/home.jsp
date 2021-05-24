@@ -17,9 +17,15 @@
 			</div>
 			<div class="row">
 				<form:form action="depositar" method="POST" modalAttribute="cuenta">
-					<div class="form-group ">
-						<label for="saldo">Monto</label>
-						<form:input path="saldo" type="text" id="saldo" class="form-control" />
+					<div class="form-group row">
+						<div class="col-md-6">
+							<label for="saldo">Número Cuenta</label>
+							<form:input path="num" type="text" id="num" class="form-control" />
+						</div>
+						<div class="col-md-6">
+							<label for="monto">Monto</label>
+							<form:input path="monto" type="text" id="monto" class="form-control" />
+						</div>
 					</div>
 					<button type="Submit" class="btn btn-secondary">Depositar</button>
 				</form:form>

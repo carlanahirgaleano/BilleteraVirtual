@@ -13,6 +13,7 @@ public class Cuenta {
 	private long num;
 	
 	//private Usuario usuario;
+	private double monto;
 	private double saldo;
 	
 	public long getNum() {
@@ -21,17 +22,20 @@ public class Cuenta {
 	public void setNum(long num) {
 		this.num = num;
 	}
-//	public Usuario getUsuario() {
-//		return usuario;
-//	}
-//	public void setUsuario(Usuario usuario) {
-//		this.usuario = usuario;
-//	}
+	
 	public double getSaldo() {
 		return saldo;
 	}
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
+	public double getMonto() {
+		return monto;
+	}
+	public void setMonto(double monto) {
+		this.monto = monto;
+	}
+	
+	
 	
 }

@@ -40,14 +40,19 @@ public class ControladorHome {
 		
 		ModelMap modelo = new ModelMap();
 		
-		if(cuenta.getSaldo() < 0) {
+		if(cuenta.getMonto() < 0) {
 			modelo.put("error", true);
 			modelo.put("message", "Ocurrió un error al realizar el deposito. Verifique.");
 			
 		}else {
-			modelo.put("error", false);
-			modelo.put("message", "El deposito se realizó correctamente.");
-			servicioCuenta.depositar(cuenta);
+			cuenta.setSaldo(cuenta.getMonto());
+			if(servicioCuenta.depositar(cuenta)) {
+				modelo.put("error", false);
+				modelo.put("message", "El deposito se realizó correctamente.");
+			}else {
+				modelo.put("error", true);
+				modelo.put("message", "Ocurrió un error al realizar el deposito. Verifique.");
+			}
 		}
 		
 		return new ModelAndView("home",modelo);

@@ -32,7 +32,7 @@ public class RepositorioCuentaImpl implements RepositorioCuenta{
 	@Override
 	public void guardar(Cuenta cuenta) {
 		
-		sessionFactory.getCurrentSession().save(cuenta);
+		sessionFactory.getCurrentSession().saveOrUpdate(cuenta);
 		
 	}
 

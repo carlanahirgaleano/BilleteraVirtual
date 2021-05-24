@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControladorHomeTest {
 
 	private ServicioCuenta servicioCuenta;
-	private ControladorHome controladorHome = new ControladorHome();
+	private ControladorHome controladorHome = new ControladorHome(servicioCuenta);
 	private Cuenta cuenta = new Cuenta();
 	private ModelAndView mav = new ModelAndView();
 	

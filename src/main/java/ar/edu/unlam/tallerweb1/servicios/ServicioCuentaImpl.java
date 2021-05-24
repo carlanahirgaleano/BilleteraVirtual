@@ -22,7 +22,17 @@ public class ServicioCuentaImpl implements ServicioCuenta{
 	public boolean depositar(Cuenta cuenta) {
 		
 		try {
-			servicioCuentaDao.guardar(cuenta);
+			Cuenta cuentaExistente = servicioCuentaDao.consultarCuenta(cuenta);
+			if(cuentaExistente != null) {
+				cuentaExistente.setSaldo(cuentaExistente.getSaldo() + cuenta.getMonto());
+				cuentaExistente.setMonto(cuenta.getMonto());
+				servicioCuentaDao.guardar(cuentaExistente);
+			}else {
+				if(cuenta.getNum() != 0) {
+					return false;
+				}
+				servicioCuentaDao.guardar(cuenta);
+			}
 			return true;
 		}catch(Exception ex) {
 			return false;
