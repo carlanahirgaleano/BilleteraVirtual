@@ -15,7 +15,14 @@ public class Cuenta {
 	//private Usuario usuario;
 	private double monto;
 	private double saldo;
+	private String moneda;
 	
+	public String getMoneda() {
+		return moneda;
+	}
+	public void setMoneda(String moneda) {
+		this.moneda = moneda;
+	}
 	public long getNum() {
 		return num;
 	}

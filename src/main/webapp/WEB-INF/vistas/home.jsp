@@ -14,17 +14,24 @@
 		<div class = "container">
 			<div class="row">
 				<h1>Cuenta de banco</h1>
+				<h6>--Déje el número de cuenta en 0 para crear una nueva--</h6>
 			</div>
 			<div class="row">
 				<form:form action="depositar" method="POST" modalAttribute="cuenta">
 					<div class="form-group row">
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<label for="saldo">Número Cuenta</label>
-							<form:input path="num" type="text" id="num" class="form-control" />
+							<form:input path="num" type="number" id="num" class="form-control" />
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-4">
+							<label for="moneda">Moneda</label>
+							<form:select  path="moneda" class="form-control">
+							    <form:options items="${listaMoneda}"></form:options>
+						  	</form:select>
+						</div>
+						<div class="col-md-4">
 							<label for="monto">Monto</label>
-							<form:input path="monto" type="text" id="monto" class="form-control" />
+							<form:input path="monto" type="number" id="monto" class="form-control" step="0.01" />
 						</div>
 					</div>
 					<button type="Submit" class="btn btn-secondary">Depositar</button>
@@ -32,7 +39,14 @@
 			</div>
 			
 			<c:if test="${not empty error}">
-		        <h4><span>${message}</span></h4>
+		        <h4>
+		        	<c:if test="${error == true}">
+		        		<span class="text-danger">${message}</span>
+		        	</c:if>
+		        	<c:if test="${error == false}">
+		        		<span class="text-success">${message}</span>
+		        	</c:if>
+		        </h4>
 		        <br>
 	        </c:if>	
 		</div>

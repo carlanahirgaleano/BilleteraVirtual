@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import antlr.collections.List;
 import ar.edu.unlam.tallerweb1.modelo.Cuenta;
 import ar.edu.unlam.tallerweb1.servicios.ServicioCuenta;
 
@@ -18,6 +21,8 @@ public class ControladorHome {
 
 	private ServicioCuenta servicioCuenta;
 
+	public ControladorHome() {}
+	
 	@Autowired
 	public ControladorHome(ServicioCuenta servicioCuenta){
 		this.servicioCuenta = servicioCuenta;
@@ -32,6 +37,11 @@ public class ControladorHome {
 		Cuenta cuenta = new Cuenta();
 		modelo.put("cuenta", cuenta);
 		
+		ArrayList<String> listaMonedas = new ArrayList();
+		listaMonedas.add("Peso ARG");
+		listaMonedas.add("Dólar");
+		modelo.put("listaMoneda",listaMonedas);
+		
 		return new ModelAndView("home", modelo);
 	}
 	
@@ -45,7 +55,7 @@ public class ControladorHome {
 			modelo.put("message", "Ocurrió un error al realizar el deposito. Verifique.");
 			
 		}else {
-			cuenta.setSaldo(cuenta.getMonto());
+//			cuenta.setSaldo(cuenta.getMonto());
 			if(servicioCuenta.depositar(cuenta)) {
 				modelo.put("error", false);
 				modelo.put("message", "El deposito se realizó correctamente.");
@@ -54,6 +64,13 @@ public class ControladorHome {
 				modelo.put("message", "Ocurrió un error al realizar el deposito. Verifique.");
 			}
 		}
+		
+		ArrayList<String> listaMonedas = new ArrayList();
+		listaMonedas.add("Peso ARG");
+		listaMonedas.add("Dólar");
+		modelo.put("listaMoneda",listaMonedas);
+		
+		
 		
 		return new ModelAndView("home",modelo);
 	}
